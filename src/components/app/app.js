@@ -10,9 +10,9 @@ import "./app.css";
 
 const App = () => {
   const data = [
-    { label: "React Udemy", important: true },
-    { label: "LinkdIn blog", important: false },
-    { label: "JS Udemy", important: false },
+    { label: "React Udemy", important: true, id: 1 },
+    { label: "LinkdIn blog", important: false, id: 2 },
+    { label: "JS Udemy", important: false, id: 3 },
   ];
 
   return (
