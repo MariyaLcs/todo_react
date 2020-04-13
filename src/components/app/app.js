@@ -9,6 +9,8 @@ import PostAddForm from "../post-add-form/post-add-form";
 import "./app.css";
 
 const App = () => {
+  const data = [{ label: "NodeJs Udemy", important: false }];
+
   return (
     <div className="app">
       <AppHeader />

@@ -9,7 +9,7 @@ const PostStatusFilter = () => {
         All
       </button>
       <button className="btn btn-outline-secondary" type="button">
-        Liked
+        Important
       </button>
     </div>
   );
