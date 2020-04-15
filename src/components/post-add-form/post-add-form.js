@@ -18,6 +18,7 @@ export default class PostAddForm extends Component {
   onSubmit(event) {
     event.preventDefault();
     this.props.onAdd(this.state.text);
+    this.setState({ text: "" });
   }
 
   render() {
@@ -28,6 +29,7 @@ export default class PostAddForm extends Component {
           placeholder="Add new item"
           className="form-control new-post-label"
           onChange={this.onValueChange}
+          value={this.state.text}
         />
         <button type="submit" className="btn btn-outline-secondary">
           Add
