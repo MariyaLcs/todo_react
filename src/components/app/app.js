@@ -18,6 +18,7 @@ export default class App extends Component {
         { label: "JS Udemy", important: false, like: false, id: 3 },
       ],
       term: "",
+      filter: "all",
     };
     this.deleteItem = this.deleteItem.bind(this);
     this.addItem = this.addItem.bind(this);
@@ -65,15 +66,6 @@ export default class App extends Component {
     });
   }
 
-  searchPost(items, term) {
-    if (term.length === 0) {
-      return items;
-    }
-    return items.filter((item) => {
-      return item.label.indexOf(term) > -1;
-    });
-  }
-
   onToggleLiked(id) {
     this.setState(({ data }) => {
       const index = data.findIndex((elem) => elem.id === id);
@@ -90,24 +82,41 @@ export default class App extends Component {
     });
   }
 
+  searchPost(items, term) {
+    if (term.length === 0) {
+      return items;
+    }
+    return items.filter((item) => {
+      return item.label.indexOf(term) > -1;
+    });
+  }
+
+  filterPost(items, filter) {
+    if (filter === "important") {
+      return items.filter((item) => item.important);
+    } else {
+      return items;
+    }
+  }
+
   onUpdateSearch(term) {
     this.setState({ term });
   }
 
   render() {
-    const { data, term } = this.state;
+    const { data, term, filter } = this.state;
 
     const liked = data.filter((item) => item.like).length;
     const allPosts = data.length;
 
-    const visiblePosts = this.searchPost(data, term);
+    const visiblePosts = this.filterPost(this.searchPost(data, term), filter);
 
     return (
       <div className="app">
         <AppHeader liked={liked} allPosts={allPosts} />
         <div className="search-panel d-flex">
           <SearchPanel onUpdateSearch={this.onUpdateSearch} />
-          <PostStatusFilter />
+          <PostStatusFilter filter={filter} />
         </div>
         <PostList
           posts={visiblePosts}
